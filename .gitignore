@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+ENV/
+build/
+dist/
+*.egg-info/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.kedge_cache/
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+Session.vim
+local.shada
+
+# Project specific
+.ruff_cache/
+quality_report.md
+review_logs/
