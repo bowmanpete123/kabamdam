@@ -16,10 +16,10 @@ The goal of `kabamdam` is to provide a "Status as Code" workflow. It parses a pr
         - (/) 1.3.1 Design SVG Heatmap (4 colors: Progress, Lessons, Design, Planned)
         - (/) 1.3.2 Implement Bug Icons in status list
         - (/) 1.3.3 Render parsed data into SVG template
-- (*) 2. Tooling & Integration
-    - (*) 2.1 CLI Interface ("Wrap up" command)
-        - (*) 2.1.1 Implement pipeline: parse -> render -> inject README sections
-        - (*) 2.1.2 Include "drill-down" links to Roadmap and Timesheets in README
+- (/) 2. Tooling & Integration
+    - (/) 2.1 CLI Interface ("Wrap up" command)
+        - (/) 2.1.1 Implement pipeline: parse -> render -> inject README sections
+        - (/) 2.1.2 Include "drill-down" links to Roadmap and Timesheets in README
     - (*) 2.2 Pre-commit Hook
         - (*) 2.2.1 Create `.pre-commit-hooks.yaml` config
 

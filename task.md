@@ -1,36 +1,39 @@
-# Task: Implement SVG Heatmap Enhancements (1.3.1 - 1.3.3)
+# Task: Implement CLI Interface (2.1)
 
-## Unit: SVG Palette and Legend
-- **Target Source File**: `src/kabamdam/svg_generator.py`
-- **Target Test File**: `tests/test_svg_generator.py`
-- **Spec File**: `specs/1.3.1_behaviors.md`
-- [x] Update `SVGConfig.colors` to match 4-color scheme <!-- id: 7 -->
-- [x] Update `SVGGenerator._generate_legend` labels <!-- id: 8 -->
-- [x] Scenario: `DONE` maps to Progress (#2ea44f) <!-- id: 13 -->
-- [x] Scenario: `TESTING` maps to Lessons (#8250df) <!-- id: 14 -->
-- [x] Scenario: `ANALYSIS`/`DEVELOPMENT` map to Design (#0969da) <!-- id: 15 -->
-- [x] Scenario: `TODO` maps to Planned (#8b949e) <!-- id: 16 -->
-- [x] Tests Ready: `tests/test_svg_generator.py` (Kedge) <!-- id: 19 -->
-- [x] Implemented <!-- id: 21 -->
+## Unit: CLI Scaffolding
+- **Target Source File**: `src/kabamdam/main.py`
+- **Target Test File**: `tests/test_cli.py`
+- **Spec File**: `specs/2.1_behaviors.md`
+- [x] Initialize `typer` app in `src/kabamdam/main.py` <!-- id: 23 -->
+- [x] Add `[project.scripts]` entry to `pyproject.toml` <!-- id: 31 -->
+- [x] Tests Ready: `tests/test_cli.py` (8 scenarios) <!-- id: 39 -->
+- [x] Scenario: Default execution with `kabamdam` <!-- id: 32 -->
+- [x] Scenario: Override paths via options <!-- id: 33 -->
+- [x] Scenario: Handle missing roadmap file <!-- id: 34 -->
 
-## Unit: Bug Visual Indicator
-- **Target Source File**: `src/kabamdam/svg_generator.py`
-- **Target Test File**: `tests/test_svg_generator.py`
-- **Spec File**: `specs/1.3.1_behaviors.md`
-- [x] Implement bug icon rendering in `SVGGenerator` <!-- id: 9 -->
-- [x] Ensure `_get_atomic_tasks` correctly handles hierarchy for bugs <!-- id: 10 -->
-- [x] Scenario: Render BUG with white circle icon <!-- id: 17 -->
-- [x] Scenario: Render SUBTASK as plain square <!-- id: 18 -->
-- [x] Tests Ready: `tests/test_svg_generator.py` (Kedge) <!-- id: 20 -->
-- [x] Implemented <!-- id: 22 -->
+## Unit: README Update Logic
+- **Target Source File**: `src/kabamdam/main.py`
+- **Target Test File**: `tests/test_cli.py`
+- **Spec File**: `specs/2.1_behaviors.md`
+- [x] Tests Ready: `tests/test_cli.py` (8 scenarios) <!-- id: 40 -->
+- [x] Implement `update_readme` function with marker detection <!-- id: 25 -->
+- [x] Scenario: Update existing markers correctly <!-- id: 35 -->
+- [x] Scenario: Handle missing markers gracefully <!-- id: 36 -->
+- [x] Scenario: Calculate relative paths for nested files <!-- id: 37 -->
+
+## Unit: Pipeline Orchestration
+- **Target Source File**: `src/kabamdam/main.py`
+- **Target Test File**: `tests/test_cli.py`
+- **Spec File**: `specs/2.1_behaviors.md`
+- [x] Tests Ready: `tests/test_cli.py` (8 scenarios) <!-- id: 41 -->
+- [x] Integrate Parsers and SVGGenerator <!-- id: 27 -->
+- [x] Implement robust error handling (IOErrors, Partial markers) <!-- id: 38 -->
+
+
+
 
 ## Unit: Integration & Verification
-- **Target Source File**: `src/kabamdam/svg_generator.py`
-- **Target Test File**: `tests/test_svg_generator.py`
-- [x] Run `mise run test` to verify changes <!-- id: 11 -->
-- [x] Manually verify generated SVG output <!-- id: 12 -->
-
-
----
-
-# Next Workflow: [Code Reviewer](./roles/code_reviewer.md)
+- **Target Source File**: `src/kabamdam/main.py`
+- **Target Test File**: `tests/test_cli.py`
+- [ ] Run full pipeline and verify README update <!-- id: 29 -->
+- [ ] Run `mise run test` for CLI coverage <!-- id: 30 -->
