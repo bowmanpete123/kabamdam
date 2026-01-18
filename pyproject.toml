@@ -17,6 +17,7 @@ kabamdam = "kabamdam.main:app"
 dev = [
   "debugpy",
   "docformatter",
+  "pre-commit>=4.5.1",
   "pyright",
   "pytest",
   "pytest-cov",

@@ -1,0 +1,10 @@
+repos:
+  - repo: local
+    hooks:
+      - id: kabamdam
+        name: kabamdam
+        entry: kabamdam
+        language: system
+        files: ^(docs/roadmap/ROADMAP\.md|timesheets\.md)$
+        pass_filenames: false
+        always_run: false
