@@ -1,15 +1,24 @@
-# Task: Bug Classification (1.1.3)
+# Task: SVG Heatmap (1.3.1)
 
-**Requirement**: Distinguish between Subtasks and Bugs based on their hierarchical depth in the roadmap.
+**Requirement**: Design and implement a visual SVG Heatmap that represents project task statuses across different categories (Progress, Lessons, Design, Planned).
 
 ## Micro-Plan (Architect)
-- [x] Unit 1: Hierarchical Type Classification <!-- id: 60 -->
-    - [x] [BA] Specify depth-to-type mapping (Level 4 = BUG) <!-- id: 61 -->
-    - [x] [TE] Update `tests/test_roadmap_parser.py` with type assertions <!-- id: 62 -->
-    - [x] [DEV] Implement `type` property and enhanced nesting in `RoadmapParser` <!-- id: 63 -->
-    - [x] [QA] Verify correct classification of Epics, Stories, Subtasks, and Bugs <!-- id: 64 -->
+
+### Unit: SVGGenerator
+- **Target Source File**: `src/kabamdam/svg_generator.py`
+- **Target Test File**: `tests/test_svg_generator.py`
+- **Spec File**: `docs/specs/svg_generator_spec.md`
+
+- [x] [BA] Define behavioral scenarios for SVGGenerator (Epic Swimlanes) <!-- id: 100 -->
+    - [x] Scenario 1: Empty Roadmap <!-- id: 110 -->
+    - [x] Scenario 2: EPIC Swimlanes <!-- id: 111 -->
+    - [x] Scenario 3: Mixed Statuses in Lane <!-- id: 112 -->
+    - [x] Scenario 4: Legend Rendering <!-- id: 113 -->
+- [x] [TE] Implement Kedge Test Suite for SVGGenerator <!-- id: 101 -->
+- [x] [DEV] Implement SVGGenerator class (DOP & Pydantic) <!-- id: 102 -->
+- [x] [QA] Verify full project quality suite <!-- id: 103 -->
 
 ## Status
 - Core Engine: (d)
-- Roadmap Parser: (d)
-- 1.1.3: (d)
+- Roadmap Parser: (/)
+- 1.3.1 SVG Heatmap: (*)
