@@ -81,6 +81,33 @@ This is a paragraph.
     assert tasks[0].id == "1"
 
 
+def test_parse_bug_classification():
+    content = """
+- (*) 1. Epic A
+    - (a) 1.1 Story B
+        - (d) 1.1.1 Subtask C
+            - (*) 1.1.1.1 Bug D
+"""
+    parser = RoadmapParser()
+    tasks = parser.parse_string(content)
+
+    epic = tasks[0]
+    assert epic.type == "EPIC"
+    assert epic.level == 1
+
+    story = epic.subtasks[0]
+    assert story.type == "STORY"
+    assert story.level == 2
+
+    subtask = story.subtasks[0]
+    assert subtask.type == "SUBTASK"
+    assert subtask.level == 3
+
+    bug = subtask.subtasks[0]
+    assert bug.type == "BUG"
+    assert bug.level == 4
+
+
 def test_file_not_found():
     parser = RoadmapParser()
     with pytest.raises(FileNotFoundError):
