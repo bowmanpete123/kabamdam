@@ -1,8 +1,15 @@
 [tools]
- python = "3.11" # [optional] will be used for the venv
-uv = 'latest'
- [env]
- PROJECT_NAME = "{{ config_root | basename }}"
- _.python.venv = { path = "{{ config_root }}/.venv", create = true }
+python = "3.12"  # matches pyproject.toml requirement
+uv = "latest"
+
+[env]
+PROJECT_NAME = "{{ config_root | basename }}"
+_.python.venv = { path = "{{ config_root }}/.venv", create = true }
 PYTHONPATH = "{{ config_root }}"
 
+[tasks]
+test = "uv run pytest"
+lint = "uv run ruff check ."
+format = "uv run ruff format ."
+run = "uv run python src/kabamdam/main.py"
+check = { depends = ["lint", "test"] }

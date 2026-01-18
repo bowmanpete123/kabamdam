@@ -13,22 +13,21 @@
 **Instructions**:
 ### Planning Phase
 1.  **Analyze Request (Source of Truth)**:
-    - **Check Roadmap**: Check if `ROADMAP.md` exists.
-    - If **MISSING**: Trigger the **[Define Project Vision](../workflows/define_project_vision.md)** workflow (Role: [Product Owner](../roles/product_owner.md)).
-    - If **EXISTS**: Pick the next item from `Work In Progress`.
+    {TRACKER_INSTRUCTIONS}
     -   **Decision**: Ask the user to select the next ticket/item from the list.
 2.  **Git Setup**:
     - Checkout base: `git checkout main`
     - Sync: `git fetch origin && git pull origin main`
     - Branch: `git checkout -b feature/{TICKET_ID}-{short-description}`
-3.  **Configure Scripts**:
-    -   **Inspect** `pyproject.toml` (e.g., `[dependency-groups]`, `[tool.poetry.dependencies]`) to see which tools are installed (e.g., `ruff`, `black`, `pytest`).
-    -   **Define Scripts**: Add the following scripts using the *available* tools:
-        -   `test`: (e.g., `pytest` or `python -m unittest`)
-        -   `lint`: (e.g., `ruff check .` or `pylint src`)
-        -   `format`: (e.g., `ruff format .` or `black .`)
-        -   `run`: (Entry point for the app)
-        -   `check`: (Composite: `lint` + `test`)
+3.  **Configure Scripts (`mise`)**:
+    -   **Inspect** `pyproject.toml` and `.mise.toml` to see which tools and tasks are installed.
+    -   **Define `mise` Tasks**: Add the following to `.mise.toml` under `[tasks]`:
+        -   `test`: `uv run pytest`
+        -   `lint`: `uv run ruff check .`
+        -   `format`: `uv run ruff format .`
+        -   `run`: `uv run python src/main.py`
+        -   `check`: (Composite: `{ depends = ["lint", "test"] }`)
+    -   **Verification**: Run `mise run check` to ensure the environment is ready.
 4.  **Assign**: Trigger the [Architect](./architect.md) to decompose the ticket and populate `task.md`.
 4.  **Orchestrate**:
     -   **Tests**: Trigger [Test Engineer](./test_engineer.md) to create tests based on `task.md`.

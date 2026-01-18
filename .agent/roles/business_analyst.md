@@ -20,8 +20,11 @@
     - **Manage `task.md`**: You are the primary owner of `task.md` for this unit.
     - **Break down** the high-level unit task into specific, granular sub-tasks in `task.md` representing individual test scenarios (Happy/Edge/Error).
     - *Format*: Document detailed scenarios in the **Spec File** (usually `specs/{unit}_spec.md`).
-    - *Content*: Define precise `Input Data` and `Expected Outcome` for:
+    - *Content*: Every Spec File MUST include a **Requirement Traceability** section at the top, linking to the specific `ROADMAP.md` entry or **Jira Ticket ID**. Define precise `Input Data` and `Expected Outcome` for:
         -   **Happy Paths**: Standard, expected usage.
         -   **Edge Cases**: Boundary conditions, empty inputs, extreme values.
         -   **Error States**: User error, system failure, invalid data types.
-3.  **Handoff**: Trigger the **Test Engineer** only once `task.md` is fully populated with granular scenarios and the user has confirmed your findings.
+3.  **Handoff (CRITICAL)**:
+    -   Once the **Spec File** is created and `task.md` is populated:
+    -   **Ask for EXPRESS USER PERMISSION** to proceed. Present the scenarios briefly or point the user to the spec file.
+    -   Do **NOT** trigger the **Test Engineer** until the user has explicitly given the green light on your behavioral definitions.

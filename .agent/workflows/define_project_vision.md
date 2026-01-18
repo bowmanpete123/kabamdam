@@ -1,6 +1,6 @@
 # Workflow: Define Project Vision
 
-**Trigger**: Project Initialization OR Missing `ROADMAP.md`.
+**Trigger**: Project Initialization OR Missing `docs/roadmap/ROADMAP.md`.
 
 ---
 
@@ -16,7 +16,7 @@
 ## Step 2: Create Roadmap
 **Role**: [Product Owner](../roles/product_owner.md)
 **Action**:
-1.  Create `ROADMAP.md` using the standard convention:
+1.  Create `docs/roadmap/ROADMAP.md` using the standard convention:
     -   **Work In Progress**: (The immediate MVP features)
     -   **Further Requirements**: (Next release)
     -   **Scope Creep**: (Parking lot)

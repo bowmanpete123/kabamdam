@@ -23,7 +23,7 @@
 ### Option C: From Roadmap / Direct
 **Role**: [Project Manager](../roles/project_manager.md)
 **Action**:
-1.  **Check Roadmap**: Ensure item matches an entry in `ROADMAP.md`.
+1.  **Check Roadmap**: Ensure item matches an entry in `docs/roadmap/ROADMAP.md`.
 2.  **Fallback**: If truly ad-hoc, document requirements in `task.md`.
 
 ---
