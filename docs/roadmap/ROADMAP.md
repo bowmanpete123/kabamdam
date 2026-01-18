@@ -12,10 +12,10 @@ The goal of `kabamdam` is to provide a "Status as Code" workflow. It parses a pr
     - (/) 1.2 Timesheet Parser
         - (/) 1.2.1 Parse log entries from `timesheets.md`
         - (/) 1.2.2 Extract timestamps and activity labels
-    - (*) 1.3 SVG Generator
-        - (*) 1.3.1 Design SVG Heatmap (4 colors: Progress, Lessons, Design, Planned)
-        - (*) 1.3.2 Implement Bug Icons in status list
-        - (*) 1.3.3 Render parsed data into SVG template
+    - (/) 1.3 SVG Generator
+        - (/) 1.3.1 Design SVG Heatmap (4 colors: Progress, Lessons, Design, Planned)
+        - (/) 1.3.2 Implement Bug Icons in status list
+        - (/) 1.3.3 Render parsed data into SVG template
 - (*) 2. Tooling & Integration
     - (*) 2.1 CLI Interface ("Wrap up" command)
         - (*) 2.1.1 Implement pipeline: parse -> render -> inject README sections
