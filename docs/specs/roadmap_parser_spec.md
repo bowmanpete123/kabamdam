@@ -9,12 +9,18 @@ from pydantic import BaseModel
 from typing import List, Optional, Literal
 
 class RoadmapTask(BaseModel):
-    id: str  # e.g., "1.1.1"
+    id: str
     description: str
     status: Literal["TODO", "DOING", "DONE"]
+    type: Literal["EPIC", "STORY", "SUBTASK", "BUG"]
     subtasks: List["RoadmapTask"] = []
-    level: int  # 1 (Epic), 2 (Story), 3 (Subtask)
+    level: int 
 ```
+
+- Level 1: EPIC
+- Level 2: STORY
+- Level 3: SUBTASK
+- Level 4: BUG (Indented level below subtask)
 
 ## Behavioral Scenarios
 
