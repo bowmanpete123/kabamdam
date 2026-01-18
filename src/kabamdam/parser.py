@@ -1,7 +1,16 @@
+from enum import Enum
 import re
 from pathlib import Path
-from pydantic import BaseModel, ConfigDict
-from typing import List, Literal
+from pydantic import BaseModel, ConfigDict, Field
+from typing import List
+
+
+class TaskStatus(str, Enum):
+    TODO = "TODO"  # (*)
+    ANALYSIS = "ANALYSIS"  # (a)
+    DEVELOPMENT = "DEVELOPMENT"  # (d)
+    TESTING = "TESTING"  # (t)
+    DONE = "DONE"  # (/)
 
 
 class RoadmapTask(BaseModel):
@@ -9,18 +18,28 @@ class RoadmapTask(BaseModel):
 
     id: str
     description: str
-    status: Literal["TODO", "DOING", "DONE"]
-    subtasks: List["RoadmapTask"] = []
+    status: TaskStatus
+    subtasks: List["RoadmapTask"] = Field(default_factory=list)
     level: int
+
+    @property
+    def high_level_status(self) -> str:
+        if self.status in (
+            TaskStatus.ANALYSIS,
+            TaskStatus.DEVELOPMENT,
+            TaskStatus.TESTING,
+        ):
+            return "DOING"
+        return self.status.value
 
 
 class RoadmapParser:
     STATUS_MAP = {
-        "*": "TODO",
-        "a": "DOING",
-        "d": "DOING",
-        "t": "DOING",
-        "/": "DONE",
+        "*": TaskStatus.TODO,
+        "a": TaskStatus.ANALYSIS,
+        "d": TaskStatus.DEVELOPMENT,
+        "t": TaskStatus.TESTING,
+        "/": TaskStatus.DONE,
     }
 
     def parse_file(self, file_path: str | Path) -> List[RoadmapTask]:
@@ -52,7 +71,7 @@ class RoadmapParser:
             description = match.group("description") or ""
 
             # Map status
-            status = self.STATUS_MAP.get(status_code, "TODO")
+            status = self.STATUS_MAP.get(status_code, TaskStatus.TODO)
 
             # Find parent by indentation
             while stack and stack[-1][0] >= indent:
