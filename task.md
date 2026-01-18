@@ -1,16 +1,17 @@
-# Task: Implement Status Mapping (1.1.2)
+# Task: Implement Timesheet Parser (1.2.1)
 
-**Requirement**: Map task status to internal data structure (implement Enums for better observability).
+**Requirement**: Parse log entries from `timesheets.md`.
 
 ## Micro-Plan (Architect)
-- [x] Unit 1: Refine `RoadmapTask` Model & `TaskStatus` Enum <!-- id: 20 -->
-    - [x] [BA] Define mapping for sub-states (Analysis/Dev/Test) <!-- id: 21 -->
-    - [x] [TE] Update `tests/test_roadmap_parser.py` to check for Enum status <!-- id: 22 -->
-    - [x] [DEV] Implement `Status` Enum and update `RoadmapTask` model in `src/kabamdam/parser.py` <!-- id: 23 -->
-    - [x] [QA] Verify correct mapping for all `roadmapinfo.md` codes <!-- id: 24 -->
+- [x] Unit 1: `TimesheetParser` class <!-- id: 30 -->
+    - [x] [BA] Refine for multi-column contributions, template exclusion & empty row filtering <!-- id: 31 -->
+    - [x] [TE] Create `tests/test_timesheet_parser.py` (Full-file & Template focuses) <!-- id: 32 -->
+    - [x] [DEV] Implement `TimesheetParser` for expanded table structure <!-- id: 33 -->
+    - [x] [QA] Verify parsing of all 6 columns from `timesheets_example.md` <!-- id: 34 -->
+- [ ] Unit 2: Roadmap Parser Update (Optional/Refinement) <!-- id: 35 -->
+    - [ ] [DEV] Update `RoadmapTask` to include `type` (Epic/Story/Subtask/Bug) <!-- id: 36 -->
 
 ## Status
 - Core Engine: (d)
-- Roadmap Parser: (d)
-- 1.1.1: (/)
-- 1.1.2: (*) -> (d)
+- Timesheet Parser: (d)
+- 1.2.1: (*) -> (d)
