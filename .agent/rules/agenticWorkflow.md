@@ -1,5 +1,5 @@
 ---
-description: Role-based agentic workflow for structured development
+trigger: always_on
 ---
 
 # Agentic Workflow Rules
