@@ -1,16 +1,15 @@
-# Task: Timestamps & Labels (1.2.2)
+# Task: Bug Classification (1.1.3)
 
-**Requirement**: Extract meaningful timestamps and activity details from the raw timesheet strings.
+**Requirement**: Distinguish between Subtasks and Bugs based on their hierarchical depth in the roadmap.
 
 ## Micro-Plan (Architect)
-- [x] Unit 1: Structured `TimesheetEntry` Data <!-- id: 40 -->
-    - [x] [BA] Refine for strict error handling & extraction logic <!-- id: 41 -->
-    - [x] [TE] Update `tests/test_timesheet_parser.py` with error assertions <!-- id: 42 -->
-    - [x] [DEV] Implement extraction logic in `TimesheetParser` <!-- id: 43 -->
-    - [x] [QA] Verify correct datetime and transition parsing <!-- id: 44 -->
+- [/] Unit 1: Refined `RoadmapTask` Model <!-- id: 60 -->
+    - [ ] [BA] Define classification rules (Level 4 = BUG) in `roadmap_parser_spec.md` <!-- id: 61 -->
+    - [ ] [TE] Update `tests/test_roadmap_parser.py` with depth assertions <!-- id: 62 -->
+    - [ ] [DEV] Implement `type` property and enhanced nesting in `RoadmapParser` <!-- id: 63 -->
+    - [ ] [QA] Verify correct classification of a complex hierarchy <!-- id: 64 -->
 
 ## Status
 - Core Engine: (d)
-- Timesheet Parser: (d)
-- 1.2.1: (/)
-- 1.2.2: (/)
+- Roadmap Parser: (d)
+- 1.1.3: (*) -> (d)
