@@ -6,7 +6,7 @@ The goal of `kabamdam` is to provide a "Status as Code" workflow. It parses a pr
 
 - (d) 1. Core Engine
     - (d) 1.1 Roadmap Parser
-        - (*) 1.1.1 Parse GFM task lists from `Roadmap.md`
+        - (d) 1.1.1 Parse GFM task lists from `Roadmap.md`
         - (*) 1.1.2 Map task status to internal data structure
     - (*) 1.2 Timesheet Parser
         - (*) 1.2.1 Parse log entries from `timesheets.md`

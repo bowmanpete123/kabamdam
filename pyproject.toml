@@ -5,6 +5,9 @@ description = "A way to visualise a projects status based off of a roadmap.md fi
 requires-python = ">=3.12"
 license = "GPL-3.0-only"
 authors = [{ name = "Peter Bowman", email = "peter.ralph.bowman@gmail.com" }]
+dependencies = [
+    "pydantic>=2.12.5",
+]
 
 [dependency-groups]
 dev = [
