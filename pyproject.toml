@@ -1,0 +1,34 @@
+[project]
+name = "kabamdam"
+version = "0.1.0"
+description = "A way to visualise a projects status based off of a roadmap.md file and a timesheet.md file within the projects folder structure"
+requires-python = ">=3.12"
+license = "GPL-3.0-only"
+authors = [{ name = "Peter Bowman", email = "peter.ralph.bowman@gmail.com" }]
+
+[dependency-groups]
+dev = [
+  "debugpy",
+  "docformatter",
+  "pyright",
+  "pytest",
+  "pytest-cov",
+  "pytest-mock",
+  "ruff",
+  "ty",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.docformatter]
+line_length = 120
+pre_summary_newline = true
+post_summary_newline = true
+make_summary_multi_line = false
+force_wrap = false
+use_double_quotes = true
+
+[tool.uv]
+managed = true
