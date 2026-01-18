@@ -108,6 +108,31 @@ def test_parse_bug_classification():
     assert bug.level == 4
 
 
+def test_parse_complex_hierarchy():
+    content = """
+- (*) 1. Epic 1
+    - (*) 1.1 Story 1
+        - (*) 1.1.1 Subtask 1
+            - (*) 1.1.1.1 Bug 1
+                - (*) 1.1.1.1.1 Deep Bug 2
+- (*) 2. Epic 2
+"""
+    parser = RoadmapParser()
+    tasks = parser.parse_string(content)
+
+    assert len(tasks) == 2
+    assert tasks[0].type == "EPIC"
+    assert tasks[1].type == "EPIC"
+
+    bug1 = tasks[0].subtasks[0].subtasks[0].subtasks[0]
+    assert bug1.type == "BUG"
+    assert bug1.level == 4
+
+    deep_bug = bug1.subtasks[0]
+    assert deep_bug.type == "BUG"
+    assert deep_bug.level == 5
+
+
 def test_file_not_found():
     parser = RoadmapParser()
     with pytest.raises(FileNotFoundError):
