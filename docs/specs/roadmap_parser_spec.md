@@ -27,13 +27,20 @@ class RoadmapTask(BaseModel):
 - **EPIC**: Level 1 (Top-level items, usually 0 indentation).
 - **STORY**: Level 2 (Direct children of an EPIC).
 - **SUBTASK**: Level 3 (Direct children of a STORY).
-- **BUG**: Level 3 (Similar to a SUBTASK).
-
-*Note: Level 4 is reserved for Bugs per roadmapinfo.md SOP.*
+- **BUG**: Level 4 (Indented under a SUBTASK).
 
 ## Behavioral Scenarios
 
-### Scenario 1: Parse a simple task list with status mapping
+### Scenario 1: Parse 4-level nesting
+**Input**:
+Indentation levels representing Level 1, 2, 3, and 4 items.
+**Expected Output**:
+- A Level 4 item should have `type = "BUG"`.
+- A Level 3 item should have `type = "SUBTASK"`.
+- A Level 2 item should have `type = "STORY"`.
+- A Level 1 item should have `type = "EPIC"`.
+
+### Scenario 2: Parse a simple task list with status mapping
 **Input**:
 ```markdown
 - (*) 1. Task A

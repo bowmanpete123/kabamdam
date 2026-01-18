@@ -2,7 +2,7 @@ from enum import Enum
 import re
 from pathlib import Path
 from pydantic import BaseModel, ConfigDict, Field
-from typing import List
+from typing import List, Literal
 
 
 class TaskStatus(str, Enum):
@@ -19,6 +19,7 @@ class RoadmapTask(BaseModel):
     id: str
     description: str
     status: TaskStatus
+    type: Literal["EPIC", "STORY", "SUBTASK", "BUG"]
     subtasks: List["RoadmapTask"] = Field(default_factory=list)
     level: int
 
@@ -40,6 +41,12 @@ class RoadmapParser:
         "d": TaskStatus.DEVELOPMENT,
         "t": TaskStatus.TESTING,
         "/": TaskStatus.DONE,
+    }
+
+    LEVEL_TO_TYPE = {
+        1: "EPIC",
+        2: "STORY",
+        3: "SUBTASK",
     }
 
     def parse_file(self, file_path: str | Path) -> List[RoadmapTask]:
@@ -78,11 +85,13 @@ class RoadmapParser:
                 stack.pop()
 
             level = len(stack) + 1
+            task_type = self.LEVEL_TO_TYPE.get(level, "BUG")
 
             new_task = RoadmapTask(
                 id=task_id,
                 description=description.strip(),
                 status=status,
+                type=task_type,
                 level=level,
                 subtasks=[],
             )
