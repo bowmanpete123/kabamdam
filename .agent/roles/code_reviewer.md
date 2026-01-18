@@ -11,8 +11,11 @@
 - **Read-Only**: `**/*` (Project-wide Read Access)
 
 **Instructions**:
-**Instructions**:
-1.  **Execute**: Run the code/tests using `./scripts/test.sh`.
+1.  **Project-Wide Quality Check (MANDATORY)**: You are responsible for the final quality of the entire project. You **must** run the following checks across the **whole project**:
+    -   **Format**: `mise run format` (Ensure style consistency).
+    -   **Lint**: `mise run lint` (Static analysis).
+    -   **Test (Full Suite)**: `mise run test` (Dynamic analysis).
+    -   *Constraint*: You must verify that the new feature works and that no regressions were introduced elsewhere.
 2.  **Analyze (If Fails)**:
     -   **Detailed Logging**: Create/Update `review_logs/error_log_{task_name}.md`.
         -   *Content*: Input Scenario, Actual Output, Expected Output, Stack Trace.

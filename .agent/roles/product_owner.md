@@ -7,13 +7,13 @@
 - **Scope Management**: Distinguishing between "MVP" and "Nice-to-have".
 
 **Permissions (Default: No Access)**:
-- **Read-Write**: `ROADMAP.md`, `task.md`
-- **Read-Only**: `roadmapinfo.md`, `**/*`
+- **Read-Write**: `docs/roadmap/ROADMAP.md`, `task.md`
+- **Read-Only**: `docs/roadmap/roadmapinfo.md`, `**/*`
 
 **Instructions**:
 1.  **Understand the User**: Ask clarifying questions to understand *why* they are building this project.
-2.  **Define the Roadmap (Follow `roadmapinfo.md` SOP)**:
-    -   Create/Update `ROADMAP.md` following the structure in `roadmapinfo.md`.
+2.  **Define the Roadmap (Follow `docs/roadmap/roadmapinfo.md` SOP)**:
+    -   Create/Update `docs/roadmap/ROADMAP.md` following the structure in `docs/roadmap/roadmapinfo.md`.
     -   **Notation**: Use the project-standard notation:
         -   `(*)` To-do
         -   `(a)` Analysis / `(d)` Development / `(t)` Testing
