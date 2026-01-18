@@ -7,7 +7,11 @@ license = "GPL-3.0-only"
 authors = [{ name = "Peter Bowman", email = "peter.ralph.bowman@gmail.com" }]
 dependencies = [
   "pydantic>=2.12.5",
+  "typer>=0.21.1",
 ]
+
+[project.scripts]
+kabamdam = "kabamdam.main:app"
 
 [dependency-groups]
 dev = [
