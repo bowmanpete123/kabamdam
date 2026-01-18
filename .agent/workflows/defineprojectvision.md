@@ -1,3 +1,7 @@
+---
+description: 
+---
+
 # Workflow: Define Project Vision
 
 **Trigger**: Project Initialization OR Missing `docs/roadmap/ROADMAP.md`.
