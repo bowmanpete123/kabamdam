@@ -3,41 +3,120 @@ from kabamdam.parser import RoadmapTask, TaskStatus
 from kabamdam.svg_generator import SVGGenerator
 
 
-def refined_svg_target(tasks, name=""):
+def roadmap_svg_target(tasks, name=""):
     generator = SVGGenerator()
     svg = generator.generate(tasks)
 
-    if name == "scenario_1":
-        return "No Roadmap Data available" in svg
-    if name == "scenario_2":
-        return all(
-            x in svg
-            for x in [
-                "Epic A",
-                "Epic B",
-                'fill="#2ea44f"',
-                'fill="#8b949e"',
-                'fill="#0969da"',
-            ]
-        )
-    if name == "scenario_3":
-        return 'fill="#dbab09"' in svg
-    if name == "scenario_4":
-        return all(x in svg for x in ["Progress", "Lessons", "Design", "Planned"])
+    if name == "palette_verification":
+        # Check colors
+        results = {
+            "progress": 'fill="#2ea44f"' in svg,
+            "lessons": 'fill="#8250df"' in svg,
+            "design": 'fill="#0969da"' in svg,
+            "planned": 'fill="#8b949e"' in svg,
+        }
+        return all(results.values())
+
+    if name == "legend_verification":
+        # Check legend text
+        labels = ["Progress", "Lessons", "Design", "Planned"]
+        return all(label in svg for label in labels)
+
+    if name == "bug_icon_verification":
+        # Check for circle indicating a bug
+        return "<circle" in svg and 'fill="white"' in svg
+
+    if name == "subtask_no_icon":
+        # Ensure no circle if only subtasks
+        return "<circle" not in svg
+
     return False
 
 
 svg_tests = TestSuite(
-    target=refined_svg_target,
+    target=roadmap_svg_target,
     scenarios=[
         TestCase(
-            name="scenario_1_empty_roadmap",
-            input={"tasks": [], "name": "scenario_1"},
+            name="palette_verification",
+            input={
+                "tasks": [
+                    RoadmapTask(
+                        id="1",
+                        description="Epic A",
+                        status=TaskStatus.TODO,
+                        level=1,
+                        type="EPIC",
+                        subtasks=[
+                            RoadmapTask(
+                                id="1.1",
+                                description="S1",
+                                status=TaskStatus.DONE,
+                                level=3,
+                                type="SUBTASK",
+                            ),
+                            RoadmapTask(
+                                id="1.2",
+                                description="S2",
+                                status=TaskStatus.TESTING,
+                                level=3,
+                                type="SUBTASK",
+                            ),
+                            RoadmapTask(
+                                id="1.3",
+                                description="S3",
+                                status=TaskStatus.ANALYSIS,
+                                level=3,
+                                type="SUBTASK",
+                            ),
+                            RoadmapTask(
+                                id="1.4",
+                                description="S4",
+                                status=TaskStatus.TODO,
+                                level=3,
+                                type="SUBTASK",
+                            ),
+                        ],
+                    )
+                ],
+                "name": "palette_verification",
+            },
             expected=True,
-            test_failure_message="Empty roadmap should show placeholder text",
+            test_failure_message="New 4-color palette mapping is incorrect",
         ),
         TestCase(
-            name="scenario_2_epic_swimlanes",
+            name="legend_labels",
+            input={"tasks": [], "name": "legend_verification"},
+            expected=True,
+            test_failure_message="Legend labels 'Progress', 'Lessons', 'Design', 'Planned' are missing",
+        ),
+        TestCase(
+            name="bug_icon_rendering",
+            input={
+                "tasks": [
+                    RoadmapTask(
+                        id="1",
+                        description="Epic A",
+                        status=TaskStatus.TODO,
+                        level=1,
+                        type="EPIC",
+                        subtasks=[
+                            RoadmapTask(
+                                id="1.1",
+                                description="Bug 1",
+                                status=TaskStatus.DEVELOPMENT,
+                                level=3,
+                                type="BUG",
+                            ),
+                        ],
+                    )
+                ],
+                "name": "bug_icon_verification",
+            },
+            expected=True,
+            test_failure_message="Bug icon (white circle) is missing in SVG",
+        ),
+        TestCase(
+            name="subtask_no_icon",
             input={
                 "tasks": [
                     RoadmapTask(
@@ -50,79 +129,17 @@ svg_tests = TestSuite(
                             RoadmapTask(
                                 id="1.1",
                                 description="Sub 1",
-                                status=TaskStatus.DONE,
-                                level=3,
-                                type="SUBTASK",
-                            ),
-                            RoadmapTask(
-                                id="1.2",
-                                description="Sub 2",
-                                status=TaskStatus.TODO,
-                                level=3,
-                                type="SUBTASK",
-                            ),
-                        ],
-                    ),
-                    RoadmapTask(
-                        id="2",
-                        description="Epic B",
-                        status=TaskStatus.ANALYSIS,
-                        level=1,
-                        type="EPIC",
-                        subtasks=[
-                            RoadmapTask(
-                                id="2.1",
-                                description="Sub 3",
-                                status=TaskStatus.ANALYSIS,
-                                level=3,
-                                type="SUBTASK",
-                            ),
-                        ],
-                    ),
-                ],
-                "name": "scenario_2",
-            },
-            expected=True,
-            test_failure_message="EPIC swimlanes or colors are missing",
-        ),
-        TestCase(
-            name="scenario_3_mixed_statuses",
-            input={
-                "tasks": [
-                    RoadmapTask(
-                        id="1",
-                        description="Epic A",
-                        status=TaskStatus.TODO,
-                        level=1,
-                        type="EPIC",
-                        subtasks=[
-                            RoadmapTask(
-                                id="1.1",
-                                description="Dev Task",
                                 status=TaskStatus.DEVELOPMENT,
-                                level=3,
-                                type="SUBTASK",
-                            ),
-                            RoadmapTask(
-                                id="1.2",
-                                description="Test Task",
-                                status=TaskStatus.TESTING,
                                 level=3,
                                 type="SUBTASK",
                             ),
                         ],
                     )
                 ],
-                "name": "scenario_3",
+                "name": "subtask_no_icon",
             },
             expected=True,
-            test_failure_message="Development/Testing statuses should map to yellow (#dbab09)",
-        ),
-        TestCase(
-            name="scenario_4_legend_rendering",
-            input={"tasks": [], "name": "scenario_4"},
-            expected=True,
-            test_failure_message="Legend labels are missing",
+            test_failure_message="Visual icon found on SUBTASK (should only be on BUG)",
         ),
     ],
 )

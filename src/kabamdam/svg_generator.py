@@ -11,9 +11,9 @@ class SVGConfig(BaseModel):
     label_width: int = 150
     colors: dict = {
         TaskStatus.DONE: "#2ea44f",
+        TaskStatus.TESTING: "#8250df",
         TaskStatus.ANALYSIS: "#0969da",
-        TaskStatus.DEVELOPMENT: "#dbab09",
-        TaskStatus.TESTING: "#dbab09",
+        TaskStatus.DEVELOPMENT: "#0969da",
         TaskStatus.TODO: "#8b949e",
     }
 
@@ -62,6 +62,14 @@ class SVGGenerator:
                 svg_parts.append(
                     f'<rect x="{x_offset}" y="{y_offset + 10}" width="{self.config.square_size}" height="{self.config.square_size}" fill="{color}" rx="3" />'
                 )
+                if task.type == "BUG":
+                    # Add a white circle in the center of the square
+                    cx = x_offset + (self.config.square_size / 2)
+                    cy = y_offset + 10 + (self.config.square_size / 2)
+                    r = self.config.square_size / 4
+                    svg_parts.append(
+                        f'<circle cx="{cx}" cy="{cy}" r="{r}" fill="white" />'
+                    )
 
         svg_parts.append(self._generate_legend(canvas_height - 40))
         svg_parts.append("</svg>")
@@ -88,8 +96,8 @@ class SVGGenerator:
     def _generate_legend(self, y_offset: int) -> str:
         labels = [
             ("#2ea44f", "Progress"),
-            ("#0969da", "Lessons"),
-            ("#dbab09", "Design"),
+            ("#8250df", "Lessons"),
+            ("#0969da", "Design"),
             ("#8b949e", "Planned"),
         ]
         legend_parts = []
