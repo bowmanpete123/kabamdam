@@ -8,19 +8,28 @@ This unit is responsible for parsing the `Roadmap.md` file into a structured int
 from pydantic import BaseModel
 from typing import List, Optional, Literal
 
+## Data Model (Pydantic)
+
+```python
+from pydantic import BaseModel
+from typing import List, Optional, Literal
+
 class RoadmapTask(BaseModel):
     id: str
     description: str
-    status: Literal["TODO", "DOING", "DONE"]
+    status: TaskStatus  # Enum defined in 1.1.2
     type: Literal["EPIC", "STORY", "SUBTASK", "BUG"]
     subtasks: List["RoadmapTask"] = []
     level: int 
 ```
 
-- Level 1: EPIC
-- Level 2: STORY
-- Level 3: SUBTASK
-- Level 4: BUG (Indented level below subtask)
+### Type Classification Rules
+- **EPIC**: Level 1 (Top-level items, usually 0 indentation).
+- **STORY**: Level 2 (Direct children of an EPIC).
+- **SUBTASK**: Level 3 (Direct children of a STORY).
+- **BUG**: Level 3 (Similar to a SUBTASK).
+
+*Note: Level 4 is reserved for Bugs per roadmapinfo.md SOP.*
 
 ## Behavioral Scenarios
 
