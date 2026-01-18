@@ -20,8 +20,8 @@ The goal of `kabamdam` is to provide a "Status as Code" workflow. It parses a pr
     - (/) 2.1 CLI Interface ("Wrap up" command)
         - (/) 2.1.1 Implement pipeline: parse -> render -> inject README sections
         - (/) 2.1.2 Include "drill-down" links to Roadmap and Timesheets in README
-    - (*) 2.2 Pre-commit Hook
-        - (*) 2.2.1 Create `.pre-commit-hooks.yaml` config
+    - (/) 2.2 Pre-commit Hook
+        - (/) 2.2.1 Create `.pre-commit-hooks.yaml` config
 
 ## Further Requirements
 
