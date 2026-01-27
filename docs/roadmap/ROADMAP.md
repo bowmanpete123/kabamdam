@@ -30,6 +30,8 @@ The goal of `kabamdam` is to provide a "Status as Code" workflow. It parses a pr
     - Custom Color Palettes
 - **External Sync**:
     - GitHub Issues Integration
+- **Requirements Sub-Headers**: 
+    - Create A way for subheadings in the requirements header at a `###` level to be incorporated, maybe like epics? I dont know yet
 
 ## Scope Creep
 
